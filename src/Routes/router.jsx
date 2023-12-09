@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
+import Media from "../Pages/Media/Media";
+import About from "../Pages/About/About";
+import Home from "../Pages/Home/home";
+import Layout from "../Layout/Layout";
 //router added
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: <Layout />,
 		loader: () => {
 			console.log("this is good");
 			return 1;
@@ -13,8 +16,20 @@ const router = createBrowserRouter([
 
 		children: [
 			{
-				path: "/post",
+				path: "/",
+				element: <Home />,
+			},
+			{
+				path: "post/:id",
 				element: <h2>This is post</h2>,
+			},
+			{
+				path: "media",
+				element: <Media />,
+			},
+			{
+				path: "about",
+				element: <About />,
 			},
 		],
 	},

@@ -1,6 +1,10 @@
 import { CiMenuFries } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
+	const isActive = ({ isActive }) =>
+		isActive
+			? "text-lg text-red-600 hover:text-sky-600 "
+			: "hover:text-sky-600 text-white";
 	return (
 		<div className="navbar  bg-black text-base-100  ">
 			<div className="navbar-start">
@@ -13,32 +17,46 @@ const Navbar = () => {
 						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
 					>
 						<li>
-							<Link>Home</Link>
+							<NavLink to="/" className={isActive}>
+								Home
+							</NavLink>
 						</li>
 						<li>
-							<Link>Media</Link>
+							<NavLink to="/media" className={isActive}>
+								Media
+							</NavLink>
 						</li>
 						<li>
-							<Link>About</Link>
+							<NavLink to="/about" className={isActive}>
+								About
+							</NavLink>
 						</li>
 					</ul>
 				</div>
-				<Link className="btn btn-ghost text-xl">daisyUI</Link>
+				<NavLink className="btn btn-ghost text-xl">daisyUI</NavLink>
 			</div>
 			<div className="navbar-center hidden lg:flex">
-				<ul className="menu menu-horizontal px-1">
+				<ul className="btn btn-ghost bg-black shadow-none gap-8 font-light join-horizontal  text-white px-1">
 					<li>
-						<Link>Home</Link>
+						<NavLink to="/" className={isActive}>
+							Home
+						</NavLink>
 					</li>
 					<li>
-						<Link>Media</Link>
+						<NavLink to="/media" className={isActive}>
+							Media
+						</NavLink>
 					</li>
 					<li>
-						<Link>About</Link>
+						<NavLink to="about" className={isActive}>
+							About
+						</NavLink>
 					</li>
 				</ul>
 			</div>
 			<div className="navbar-end">
+				{/* Login condition */}
+
 				<div className="dropdown dropdown-end">
 					<div
 						tabIndex={0}
@@ -57,16 +75,16 @@ const Navbar = () => {
 						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
 					>
 						<li>
-							<Link className="justify-between">
-								Profile
+							<NavLink className="justify-between">
+								Profile/About
 								<span className="badge">New</span>
-							</Link>
+							</NavLink>
 						</li>
 						<li>
-							<Link>Settings</Link>
+							<NavLink>Settings</NavLink>
 						</li>
 						<li>
-							<Link>Logout</Link>
+							<NavLink>Logout</NavLink>
 						</li>
 					</ul>
 				</div>
