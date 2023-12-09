@@ -1,10 +1,13 @@
 import { CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
+import useAuthHook from "../Hooks/useAuthHook";
 const Navbar = () => {
+	const { user, logOut } = useAuthHook();
 	const isActive = ({ isActive }) =>
 		isActive
 			? "text-lg text-red-600 hover:text-sky-600 "
 			: "hover:text-sky-600 text-white";
+
 	return (
 		<div className="navbar  bg-black text-base-100  ">
 			<div className="navbar-start">
@@ -31,9 +34,19 @@ const Navbar = () => {
 								About
 							</NavLink>
 						</li>
+						<li>
+							<NavLink to="login" className={isActive}>
+								Login
+							</NavLink>
+						</li>
+						<li>
+							<NavLink to="register" className={isActive}>
+								Register
+							</NavLink>
+						</li>
 					</ul>
 				</div>
-				<NavLink className="btn btn-ghost text-xl">daisyUI</NavLink>
+				<NavLink className="btn btn-ghost text-xl">Social-Media</NavLink>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="btn btn-ghost bg-black shadow-none gap-8 font-light join-horizontal  text-white px-1">
@@ -50,6 +63,16 @@ const Navbar = () => {
 					<li>
 						<NavLink to="about" className={isActive}>
 							About
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="login" className={isActive}>
+							Login
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="register" className={isActive}>
+							Register
 						</NavLink>
 					</li>
 				</ul>
@@ -83,7 +106,7 @@ const Navbar = () => {
 						<li>
 							<NavLink>Settings</NavLink>
 						</li>
-						<li>
+						<li onClick={() => logOut()}>
 							<NavLink>Logout</NavLink>
 						</li>
 					</ul>

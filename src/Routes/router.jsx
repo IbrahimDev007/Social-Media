@@ -3,6 +3,8 @@ import Media from "../Pages/Media/Media";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/home";
 import Layout from "../Layout/Layout";
+import Login from "../Pages/Login/login";
+import Register from "../Pages/Register/Register";
 //router added
 const router = createBrowserRouter([
 	{
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
 			{
 				path: "about",
 				element: <About />,
+			},
+			{
+				path: "login",
+				element: <Login />,
+			},
+			{
+				path: "register",
+				element: <Register />,
 			},
 		],
 	},

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAuthHook from "../Hooks/useAuthHook";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const TextArea = () => {
 	const { register, handleSubmit, reset } = useForm();
+	const { user } = useAuthHook();
 	const onSubmit = (data) => {
 		const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 		const formData = new FormData();
@@ -16,6 +18,7 @@ const TextArea = () => {
 			.then((res) => {
 				if (res.success) {
 					const imgURL = res.data.display_url;
+					console.log(imgURL);
 					const { status } = data;
 					const newItem = {
 						// name,
