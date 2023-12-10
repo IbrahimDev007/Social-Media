@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuthHook from "../../Hooks/useAuthHook";
 
 const About = () => {
 	const { register, handleSubmit, reset } = useForm();
-	const navigate = useNavigate();
 	const { user } = useAuthHook();
 	const [userData, setuserData] = useState([]);
 	useEffect(() => {
@@ -18,34 +16,29 @@ const About = () => {
 	console.log(userData, "about");
 
 	const onSubmit = (data) => {
-		axios
-			.patch("http://localhost:3000/users/:id", {
-				name: data.name,
-				email: data.email,
-				image: data?.photoURL,
-				university: null,
-				adress: null,
-			})
-			.then((data) => {
-				console.log(data);
-				if (data.data.insertedId) {
-					reset();
-					Swal.fire({
-						position: "top-end",
-						icon: "success",
-						title: "User created successfully.",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-					navigate("/");
-				}
-			});
-		const update = {
+		const newdata = {
 			name: data.name,
 			email: data.email,
-			image: data?.photoURL,
+			// image: data?.photoURL,
+			university: data.university,
+			adress: data.adress,
 		};
-		console.log(update);
+		axios
+			.patch(`http://localhost:3000/users/${userData._id}`, newdata)
+			.then((data) => {
+				console.log(data);
+				// if (data.data.insertedId) {
+				// 	reset();
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "User created successfully.",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+				reset();
+				setuserData(userData._id, ...newdata);
+			});
 	};
 	return (
 		<div>
@@ -104,6 +97,7 @@ const About = () => {
 														<span className="label-text">Name</span>
 													</label>
 													<input
+														// value={userData?.name}
 														type="text"
 														placeholder="Name"
 														className="input input-bordered"
@@ -129,18 +123,18 @@ const About = () => {
 														type="text"
 														placeholder="University"
 														className="input input-bordered"
-														{...register("name", { required: true })}
+														{...register("university", { required: true })}
 													/>
 												</div>
 												<div className="form-control">
 													<label className="label">
-														<span className="label-text">Name</span>
+														<span className="label-text">Adress</span>
 													</label>
 													<input
 														type="text"
-														placeholder="name"
+														placeholder="adress"
 														className="input input-bordered"
-														{...register("name", { required: true })}
+														{...register("adress", { required: true })}
 													/>
 												</div>
 												<button
