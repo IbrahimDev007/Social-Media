@@ -5,6 +5,7 @@ import Home from "../Pages/Home/home";
 import Layout from "../Layout/Layout";
 import Login from "../Pages/Login/login";
 import Register from "../Pages/Register/Register";
+import Details from "../Components/Details";
 //router added
 const router = createBrowserRouter([
 	{
@@ -22,8 +23,8 @@ const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
-				path: "post/:id",
-				element: <h2>This is post</h2>,
+				path: "status/:id",
+				element: <Details />,
 			},
 			{
 				path: "media",

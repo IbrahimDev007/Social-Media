@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import Thread from "./Thread";
+import { Link } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const {
 		register,
 		handleSubmit,
@@ -10,32 +11,31 @@ const Card = () => {
 	const onSubmit = (data) => {
 		console.log(data);
 	};
-
+	console.log(id, "id-->");
 	return (
 		<div>
 			<div className="card card-compact w-96 bg-base-100 shadow-xl">
 				<figure>
-					<img
-						src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-						alt="Shoes"
-					/>
+					<img src={image} alt="Shoes" />
 				</figure>
 				<div className="card-body">
-					<h2 className="card-title">title</h2>
-					<p>Desc</p>
+					<h2 className="card-title">{title}</h2>
+					<p>{desc}</p>
 					<div className="card-actions justify-between ">
 						<button
 							className="btn btn-error btn-outline btn-sm
                             "
 						>
-							Like{" "}
+							Like{like}
 						</button>
-						<button
+
+						<Link
+							to={`../status/${id}`}
 							className="btn btn-info btn-outline btn-sm
                             "
 						>
-							Details{" "}
-						</button>
+							Details
+						</Link>
 						<div className="collapse bg-base-200">
 							<input type="checkbox" className="peer" />
 							<div className="collapse-title bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
