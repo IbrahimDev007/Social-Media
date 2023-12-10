@@ -1,16 +1,10 @@
 import { CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import useAuthHook from "../Hooks/useAuthHook";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
+
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
-	// const [userData, setuserData] = useState([]);
-	// useEffect(() => {
-	// 	axios
-	// 		.get(`http://localhost:3000/users/about/${user?.email}`)
-	// 		.then((data) => console.log("fetch-->data", setuserData(data)));
-	// }, [user?.email]);
+
 
 	const isActive = ({ isActive }) =>
 		isActive
