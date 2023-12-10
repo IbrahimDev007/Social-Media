@@ -1,6 +1,6 @@
-// import axios from "axios";
+import axios from "axios";
 import { useForm } from "react-hook-form";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthHook from "../../Hooks/useAuthHook";
 
@@ -9,9 +9,9 @@ const Register = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-		// reset,
+		reset,
 	} = useForm();
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 	const { updateUserProfile, createUser, googleSignIn } = useAuthHook();
 	const handle_google = () => {
 		googleSignIn().then((result) => {
@@ -22,18 +22,27 @@ const Register = () => {
 				name: loggedInUser.displayName,
 				email: loggedInUser.email,
 				image: loggedInUser?.photoURL,
+				university: null,
+				adress: null,
 			};
-			// fetch("", {
-			// 	method: "POST",
-			// 	headers: {
-			// 		"content-type": "application/json",
-			// 	},
-			// 	body: JSON.stringify(saveUser),
-			// })
-			// 	.then((res) => res.json())
-			// 	.then(() => {
-			// 		navigate(from, { replace: true });
-			// 	});
+			fetch("http://localhost:3000/users", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(saveUser),
+			})
+				.then((res) => res.json())
+				.then(() => {
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "User created successfully.",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+					navigate(from, { replace: true });
+				});
 		});
 	};
 
@@ -42,29 +51,30 @@ const Register = () => {
 			const regUser = result.user;
 			console.log(regUser);
 
-			updateUserProfile(data.name, data.photoURL)
+			updateUserProfile(data.name, data.photoURL, data.email)
 				.then(() => {
-					// axios
-					// 	.post("", {
-					// 		name: data.name,
-					// 		email: data.email,
-
-					// 		image: data?.photoURL,
-					// 	})
-					// 	.then((data) => {
-					// 		console.log(data);
-					// 		if (data.data.insertedId) {
-					// 			reset();
-					// 			Swal.fire({
-					// 				position: "top-end",
-					// 				icon: "success",
-					// 				title: "User created successfully.",
-					// 				showConfirmButton: false,
-					// 				timer: 1500,
-					// 			});
-					// 			navigate("/");
-					// 		}
-					// 	});
+					axios
+						.post("http://localhost:3000/users", {
+							name: data.name,
+							email: data.email,
+							image: data?.photoURL,
+							university: null,
+							adress: null,
+						})
+						.then((data) => {
+							console.log(data);
+							if (data.data.insertedId) {
+								reset();
+								Swal.fire({
+									position: "top-end",
+									icon: "success",
+									title: "User created successfully.",
+									showConfirmButton: false,
+									timer: 1500,
+								});
+								navigate("/");
+							}
+						});
 					const update = {
 						name: data.name,
 						email: data.email,

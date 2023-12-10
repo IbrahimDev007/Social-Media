@@ -14,7 +14,7 @@ import app from "../Firebase/firebase.config";
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
-
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -41,10 +41,11 @@ const AuthProvider = ({ children }) => {
 		return signOut(auth);
 	};
 
-	const updateUserProfile = (name, photo) => {
+	const updateUserProfile = (name, photo, email) => {
 		return updateProfile(auth.currentUser, {
 			displayName: name,
 			photoURL: photo,
+			Email: email,
 		});
 	};
 
@@ -54,10 +55,6 @@ const AuthProvider = ({ children }) => {
 			console.log("current user--->", currentUser, currentUser?.email);
 		});
 		return () => unsubscribe();
-		// .then(() => {
-		// 	console.log("remove done");
-		// })
-		// .catch((err) => console.log(err));
 	}, []);
 
 	const authInfo = {
