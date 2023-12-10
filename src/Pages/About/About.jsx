@@ -1,13 +1,51 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuthHook from "../../Hooks/useAuthHook";
 
 const About = () => {
-	const {
-		register,
-		handleSubmit,
-		// reset,
-	} = useForm();
+	const { register, handleSubmit, reset } = useForm();
+	const navigate = useNavigate();
+	const { user } = useAuthHook();
+	const [userData, setuserData] = useState([]);
+	useEffect(() => {
+		axios
+			.get(`http://localhost:3000/users/about/${user?.email}`)
+			.then((data) => setuserData(data.data));
+	}, [user?.email]);
+	console.log(userData, "about");
+
 	const onSubmit = (data) => {
-		console.log(data);
+		axios
+			.patch("http://localhost:3000/users/:id", {
+				name: data.name,
+				email: data.email,
+				image: data?.photoURL,
+				university: null,
+				adress: null,
+			})
+			.then((data) => {
+				console.log(data);
+				if (data.data.insertedId) {
+					reset();
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "User created successfully.",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+					navigate("/");
+				}
+			});
+		const update = {
+			name: data.name,
+			email: data.email,
+			image: data?.photoURL,
+		};
+		console.log(update);
 	};
 	return (
 		<div>
@@ -21,23 +59,23 @@ const About = () => {
 				<div className="hero-overlay bg-opacity-60"></div>
 				<div className="hero-content text-center text-neutral-content">
 					<div className="w-[50rem] flex justify-center">
-						<div className="card  h-[44rem] m-10 glass">
-							<figure>
-								<img
-									src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-									alt="car!"
-								/>
-							</figure>
+						<div className="card  h-fit m-10 glass">
+							{/* <figure>
+								<img src={userData?.image} alt="car!" />
+							</figure> */}
 							<div className="card-body">
-								<h2 className="card-title">Name</h2>
+								<h2 className="card-title">{userData?.name}</h2>
 								<p className="font-semibold text-base">
 									<span className="font-bold text-lg">Email:</span>
+									{userData?.email}
 								</p>
 								<p className="font-semibold text-base">
 									<span className="font-bold text-lg">University:</span>
+									{userData?.university}
 								</p>
 								<p className="font-semibold text-base">
 									<span className="font-bold text-lg">Adress:</span>
+									{userData?.adress}
 								</p>
 								<div className="card-actions justify-end">
 									{/* Open the modal using document.getElementById('ID').showModal() method */}

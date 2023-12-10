@@ -22,18 +22,20 @@ const Login = () => {
 				name: loggedInUser.displayName,
 				email: loggedInUser.email,
 				image: loggedInUser?.photoUrl,
+				university: null,
+				adress: null,
 			};
-			// fetch("https://sportsacdeme-ibrahimdev007.vercel.app/users", {
-			// 	method: "POST",
-			// 	headers: {
-			// 		"content-type": "application/json",
-			// 	},
-			// 	body: JSON.stringify(saveUser),
-			// })
-			// 	.then((res) => res.json())
-			// 	.then(() => {
-			// 		navigate(from, { replace: true });
-			// 	});
+			fetch("http://localhost:3000/users", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify(saveUser),
+			})
+				.then((res) => res.json())
+				.then(() => {
+					navigate(from, { replace: true });
+				});
 		});
 	};
 

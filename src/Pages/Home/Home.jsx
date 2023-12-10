@@ -1,8 +1,11 @@
 import Card from "../../Components/Card";
 import TextArea from "../../Components/TextArea";
 import Title from "../../Components/Title";
+import useAuthHook from "../../Hooks/useAuthHook";
 
 const Home = () => {
+	const { user } = useAuthHook();
+	console.log("home user", user);
 	return (
 		<div className="   my-2    ">
 			<Title title={"Add Post"} icon={""} />

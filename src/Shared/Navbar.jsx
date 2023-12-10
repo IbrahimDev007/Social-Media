@@ -1,8 +1,17 @@
 import { CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import useAuthHook from "../Hooks/useAuthHook";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
+	// const [userData, setuserData] = useState([]);
+	// useEffect(() => {
+	// 	axios
+	// 		.get(`http://localhost:3000/users/about/${user?.email}`)
+	// 		.then((data) => console.log("fetch-->data", setuserData(data)));
+	// }, [user?.email]);
+
 	const isActive = ({ isActive }) =>
 		isActive
 			? "text-lg text-red-600 hover:text-sky-600 "
@@ -29,11 +38,15 @@ const Navbar = () => {
 								Media
 							</NavLink>
 						</li>
-						<li>
-							<NavLink to="/about" className={isActive}>
-								About
-							</NavLink>
-						</li>
+
+						{user && (
+							<li>
+								<NavLink to="about" className={isActive}>
+									About
+								</NavLink>
+							</li>
+						)}
+
 						<li>
 							<NavLink to="login" className={isActive}>
 								Login
@@ -60,11 +73,13 @@ const Navbar = () => {
 							Media
 						</NavLink>
 					</li>
-					<li>
-						<NavLink to="about" className={isActive}>
-							About
-						</NavLink>
-					</li>
+					{user && (
+						<li>
+							<NavLink to="about" className={isActive}>
+								About
+							</NavLink>
+						</li>
+					)}
 					<li>
 						<NavLink to="login" className={isActive}>
 							Login

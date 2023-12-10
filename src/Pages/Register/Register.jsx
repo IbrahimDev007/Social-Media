@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthHook from "../../Hooks/useAuthHook";
 
 const Register = () => {
@@ -12,6 +12,8 @@ const Register = () => {
 		reset,
 	} = useForm();
 	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || "/";
 	const { updateUserProfile, createUser, googleSignIn } = useAuthHook();
 	const handle_google = () => {
 		googleSignIn().then((result) => {
@@ -78,7 +80,6 @@ const Register = () => {
 					const update = {
 						name: data.name,
 						email: data.email,
-
 						image: data?.photoURL,
 					};
 					console.log(update);
