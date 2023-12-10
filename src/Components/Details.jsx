@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Thread from "./Thread";
 
-const Card = () => {
+const Details = () => {
 	const {
 		register,
 		handleSubmit,
@@ -10,10 +10,9 @@ const Card = () => {
 	const onSubmit = (data) => {
 		console.log(data);
 	};
-
 	return (
 		<div>
-			<div className="card card-compact w-96 bg-base-100 shadow-xl">
+			<div className="card card-compact w-full h-full bg-base-100 shadow-xl">
 				<figure>
 					<img
 						src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -70,4 +69,4 @@ const Card = () => {
 	);
 };
 
-export default Card;
+export default Details;
