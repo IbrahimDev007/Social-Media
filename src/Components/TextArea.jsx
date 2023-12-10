@@ -48,31 +48,31 @@ const TextArea = () => {
 			});
 	};
 	return (
-		<div className="">
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="form-control my-3">
-					<label className="label flex justify-start">
-						<span className="label-text text-base-100 px-6 ">Status</span>
+		// <div className=" max-w-[40rem] flex justify-center">
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div className="form-control my-3">
+				<label className="label flex justify-start">
+					<span className="label-text text-base-100 px-6 ">Status</span>
+				</label>
+				<textarea
+					className="textarea textarea-info textarea-lg w-[26rem] h-30 border-2 rounded-lg"
+					placeholder="----- Write your  post "
+					{...register("status")}
+				></textarea>
+			</div>
+			<div className="flex justify-between">
+				<button className="btn btn-info text-white">Add Post</button>
+				<div className="form-control">
+					<label className="label btn btn-error  text-white ">
+						<span className="label-text px-6  text-white">Upload Image</span>
+						<div className="">
+							<input type="file" className="hidden" {...register("image")} />
+						</div>
 					</label>
-					<textarea
-						className="textarea textarea-info textarea-lg w-[26rem] h-30 border-2 rounded-lg"
-						placeholder="----- Write your  post "
-						{...register("status")}
-					></textarea>
 				</div>
-				<div className="flex justify-between">
-					<button className="btn btn-info">Add Post</button>
-					<div className="form-control">
-						<label className="label btn btn-success ">
-							<span className="label-text px-6">Upload Image</span>
-							<div className="">
-								<input type="file" className="hidden" {...register("image")} />
-							</div>
-						</label>
-					</div>
-				</div>
-			</form>
-		</div>
+			</div>
+		</form>
+		// </div>
 	);
 };
 
