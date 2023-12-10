@@ -8,7 +8,7 @@ const useUserHook = () => {
 	const [userData, setuserData] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3000/users/about/${user?.email}`)
+			.get(`https://social-umber-seven.vercel.app/users/about/${user?.email}`)
 			.then((data) => setuserData(data.data));
 	}, [user?.email]);
 	return [userData];

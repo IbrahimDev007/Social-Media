@@ -1,29 +1,34 @@
 import { useForm } from "react-hook-form";
 import Thread from "./Thread";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import usePostHook from "../Hooks/usePostHook";
 
 const Details = () => {
-	const {
-		register,
-		handleSubmit,
-		// reset,
-	} = useForm();
+	const [refetch] = usePostHook();
+	const { register, handleSubmit, reset } = useForm();
 	const onSubmit = (data) => {
 		console.log(data);
+		axios
+			.patch(`https://social-umber-seven.vercel.app/comment/${id}`, data)
+			.then((response) => {
+				console.log(response);
+				reset();
+				refetch();
+			});
 	};
 	const { id } = useParams();
 	const [Data, setData] = useState([]);
-	const PostData = axios
-		.get(`https://social-umber-seven.vercel.app/status/${id}`)
-		.then((data) => setData(data.data));
-
-	console.log("postdata--->", PostData);
+	useEffect(() => {
+		axios
+			.get(`https://social-umber-seven.vercel.app/status/${id}`)
+			.then((data) => setData(data.data));
+	}, [id]);
 
 	return (
 		<div>
-			{PostData && (
+			{Data && (
 				<div className="card card-compact w-full h-full bg-base-100 shadow-xl">
 					<figure>
 						<img src={Data.image} alt="Shoes" />
@@ -68,7 +73,10 @@ const Details = () => {
 											</button>
 										</div>
 									</form>
-									<Thread />
+									{Data?.comment &&
+										Data?.comment.map((talk, index) => (
+											<Thread key={index} talk={talk.comment} />
+										))}
 								</div>
 							</div>
 						</div>

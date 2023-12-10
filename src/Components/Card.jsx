@@ -1,15 +1,19 @@
 import { useForm } from "react-hook-form";
 import Thread from "./Thread";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Card = ({ title, desc, like, comment, refetch, id, image }) => {
-	const {
-		register,
-		handleSubmit,
-		// reset,
-	} = useForm();
+	const { register, handleSubmit, reset } = useForm();
 	const onSubmit = (data) => {
 		console.log(data);
+		axios
+			.patch(`https://social-umber-seven.vercel.app/comment/${id}`, data)
+			.then((response) => {
+				console.log(response);
+				reset();
+				refetch();
+			});
 	};
 	console.log(id, "id-->");
 	return (
@@ -30,7 +34,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 						</button>
 
 						<Link
-							to={`../status/${id}`}
+							to={`/status/${id}`}
 							className="btn btn-info btn-outline btn-sm
                             "
 						>
@@ -50,8 +54,8 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 										<input
 											type="text"
 											placeholder="Comment"
-											className="input input-bordered w-full"
-											{...register("comment")}
+											className="input input-bordered w-full text-success"
+											{...register("Comment")}
 										/>
 									</div>
 									<div className="flex justify-end">
@@ -60,7 +64,10 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 										</button>
 									</div>
 								</form>
-								<Thread />
+								{comment &&
+									comment.map((talk, index) => (
+										<Thread key={index} talk={talk.comment} />
+									))}
 							</div>
 						</div>
 					</div>

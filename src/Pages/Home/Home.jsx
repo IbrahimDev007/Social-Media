@@ -5,6 +5,9 @@ import usePostHook from "../../Hooks/usePostHook";
 
 const Home = () => {
 	const [status, loading, refetch] = usePostHook();
+	if (loading) {
+		return <div>Loading</div>;
+	}
 	return (
 		<div className="   my-2    ">
 			<Title title={"Add Post"} icon={""} />
