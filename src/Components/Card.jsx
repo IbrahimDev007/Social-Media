@@ -2,20 +2,33 @@ import { useForm } from "react-hook-form";
 import Thread from "./Thread";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useState } from "react";
+import { BiLike, BiSolidLike } from "react-icons/bi";
+import useUserHook from "../Hooks/useUserHook";
 const Card = ({ title, desc, like, comment, refetch, id, image }) => {
+	const [userData] = useUserHook();
+	const { _id } = userData;
+
 	const { register, handleSubmit, reset } = useForm();
+	const [Like, setLike] = useState(false);
 	const onSubmit = (data) => {
-		console.log(data);
+		// console.log(data);
 		axios
 			.patch(`https://social-umber-seven.vercel.app/comment/${id}`, data)
-			.then((response) => {
-				console.log(response);
+			.then(() => {
+				// console.log(response);
 				reset();
 				refetch();
 			});
 	};
-	console.log(id, "id-->");
+
+	const onLike = () => {
+		setLike(!Like);
+		axios
+			.post(`http://localhost/3000/like/?like=${Like}?userId=${_id}`, {})
+			.then((res) => console.log(res.data));
+	};
+
 	return (
 		<div>
 			<div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -26,13 +39,28 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 					<h2 className="card-title">{title}</h2>
 					<p>{desc}</p>
 					<div className="card-actions justify-between ">
-						<button
-							className="btn btn-error btn-outline btn-sm
+						{(!userData && (
+							<button
+								className="btn btn-error btn-outline btn-sm
                             "
-						>
-							Like{like}
-						</button>
+								onClick={onLike}
+								disabled
+							>
+								{Like ? <BiSolidLike /> : <BiLike />}
 
+								{like}
+							</button>
+						)) || (
+							<button
+								className="btn btn-error btn-outline btn-sm
+                            "
+								onClick={onLike}
+							>
+								{Like ? <BiSolidLike /> : <BiLike />}
+
+								{like}
+							</button>
+						)}
 						<Link
 							to={`/status/${id}`}
 							className="btn btn-info btn-outline btn-sm
@@ -43,7 +71,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 						<div className="collapse bg-base-200">
 							<input type="checkbox" className="peer" />
 							<div className="collapse-title bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
-								Click to Comment
+								Login to Comment
 							</div>
 							<div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
 								<form className="card-body" onSubmit={handleSubmit(onSubmit)}>
@@ -55,19 +83,27 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 											type="text"
 											placeholder="Comment"
 											className="input input-bordered w-full text-success"
-											{...register("Comment")}
+											{...register("Comment", { required: true })}
 										/>
 									</div>
 									<div className="flex justify-end">
-										<button className="btn btn-ghost btn-outline btn-sm   ">
-											Comment
-										</button>
+										{(!userData && (
+											<button
+												className="btn btn-ghost btn-outline btn-sm"
+												disabled
+											>
+												Comment
+											</button>
+										)) || (
+											<button className="btn btn-ghost btn-outline btn-sm">
+												Comment
+											</button>
+										)}
 									</div>
 								</form>
-								{comment &&
-									comment.map((talk, index) => (
-										<Thread key={index} talk={talk.comment} />
-									))}
+								{comment.map((talk, index) => (
+									<Thread key={index} talk={talk.Comment} />
+								))}
 							</div>
 						</div>
 					</div>

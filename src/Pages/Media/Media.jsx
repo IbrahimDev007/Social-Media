@@ -5,14 +5,13 @@ import usePostHook from "../../Hooks/usePostHook";
 const Media = () => {
 	const [status, loading, refetch] = usePostHook();
 
-	if (loading) {
-		return <div>Loading</div>;
-	}
-
 	return (
 		<div>
 			<Title title={"Media Post"} icon={""} />
 			<div className="grid grid-cols-1 md:lg:xl:grid-cols-2 justify-items-center">
+				{(loading === true || status === (null || undefined || "" || [])) && (
+					<span className="loading loading-infinity loading-lg text-center"></span>
+				)}
 				{status &&
 					status.map((status, index) => {
 						return (
@@ -23,7 +22,7 @@ const Media = () => {
 								image={status?.image}
 								id={status?._id}
 								like={status?.like}
-								comment={status?.comment}
+								comment={status?.Comment}
 								refetch={refetch}
 							/>
 						);
