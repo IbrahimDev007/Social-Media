@@ -1,19 +1,24 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import useAuthHook from "../../Hooks/useAuthHook";
+import { useQuery } from "@tanstack/react-query";
 
 const About = () => {
 	const { register, handleSubmit, reset } = useForm();
-	const { user } = useAuthHook();
-	const [userData, setuserData] = useState([]);
-	useEffect(() => {
-		axios
-			.get(`https://social-umber-seven.vercel.app/users/about/${user?.email}`)
-			.then((data) => setuserData(data.data));
-	}, [user?.email]);
-	console.log(userData, "about");
+
+	const {
+		data: userData = [],
+		isLoading: loading,
+		refetch,
+	} = useQuery({
+		queryKey: ["userData"],
+		queryFn: async () => {
+			const res = await axios.get(
+				"https://social-umber-seven.vercel.app/users/about/${user?.email}"
+			);
+			return res.data;
+		},
+	});
 
 	const onSubmit = (data) => {
 		const newdata = {
@@ -40,7 +45,7 @@ const About = () => {
 					timer: 1500,
 				});
 				reset();
-				setuserData(userData._id, ...newdata);
+				refetch();
 			});
 	};
 	return (
