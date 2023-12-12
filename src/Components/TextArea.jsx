@@ -2,12 +2,12 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useUserHook from "../Hooks/useUserHook";
-
+import useAuthHook from "../Hooks/useAuthHook";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const TextArea = () => {
 	const { register, handleSubmit, reset } = useForm();
 	const [userData] = useUserHook();
-
+	const { user } = useAuthHook();
 	const onSubmit = (data) => {
 		const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 		const formData = new FormData();
@@ -26,7 +26,7 @@ const TextArea = () => {
 						user_Id: userData._id,
 						title,
 						status,
-						like: null,
+						like: [],
 						Comment: [],
 						image: imgURL,
 					};
@@ -75,7 +75,11 @@ const TextArea = () => {
 				></textarea>
 			</div>
 			<div className="flex justify-between">
-				<button className="btn btn-info text-white">Add Post</button>
+				{(!user && (
+					<button className="btn btn-info text-white" disabled>
+						Add Post
+					</button>
+				)) || <button className="btn btn-info text-white">Add Post</button>}
 				<div className="form-control">
 					<label className="label btn btn-error  text-white ">
 						<span className="label-text px-6  text-white">Upload Image</span>

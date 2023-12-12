@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import usePostHook from "../Hooks/usePostHook";
+import { BiLike, BiSolidLike } from "react-icons/bi";
 
 const Details = () => {
 	const [refetch] = usePostHook();
 	const { register, handleSubmit, reset } = useForm();
+	const [Like, setLike] = useState(false);
 	const onSubmit = (data) => {
 		console.log(data);
 		axios
@@ -40,8 +42,9 @@ const Details = () => {
 							<button
 								className="btn btn-error btn-outline btn-sm
                             "
+								onClick={() => setLike(!Like)}
 							>
-								Like{Data.like}
+								{Like ? <BiSolidLike /> : <BiLike />}
 							</button>
 							{/* <button
 							className="btn btn-info btn-outline btn-sm

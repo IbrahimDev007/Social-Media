@@ -5,9 +5,11 @@ import axios from "axios";
 import { useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import useUserHook from "../Hooks/useUserHook";
+import useAuthHook from "../Hooks/useAuthHook";
 const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
+	const { user } = useAuthHook();
 
 	const { register, handleSubmit, reset } = useForm();
 	const [Like, setLike] = useState(false);
@@ -25,7 +27,10 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const onLike = () => {
 		setLike(!Like);
 		axios
-			.post(`http://localhost/3000/like/?like=${Like}?userId=${_id}`, {})
+			.patch(`http://localhost:3000/like/${id}`, {
+				like: Like,
+				userId: _id,
+			})
 			.then((res) => console.log(res.data));
 	};
 
@@ -39,7 +44,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 					<h2 className="card-title">{title}</h2>
 					<p>{desc}</p>
 					<div className="card-actions justify-between ">
-						{(!userData && (
+						{(!user && (
 							<button
 								className="btn btn-error btn-outline btn-sm
                             "
@@ -87,7 +92,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 										/>
 									</div>
 									<div className="flex justify-end">
-										{(!userData && (
+										{(!user && (
 											<button
 												className="btn btn-ghost btn-outline btn-sm"
 												disabled

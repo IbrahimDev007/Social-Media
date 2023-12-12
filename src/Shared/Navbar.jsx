@@ -5,7 +5,6 @@ import useAuthHook from "../Hooks/useAuthHook";
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
 
-
 	const isActive = ({ isActive }) =>
 		isActive
 			? "text-lg text-red-600 hover:text-sky-600 "
@@ -106,15 +105,6 @@ const Navbar = () => {
 						tabIndex={0}
 						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
 					>
-						<li>
-							<NavLink className="justify-between">
-								Profile/About
-								<span className="badge">New</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink>Settings</NavLink>
-						</li>
 						<li onClick={() => logOut()}>
 							<NavLink>Logout</NavLink>
 						</li>

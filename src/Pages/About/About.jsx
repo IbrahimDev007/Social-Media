@@ -10,7 +10,7 @@ const About = () => {
 	const [userData, setuserData] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://social-umber-seven.vercel.app/${user?.email}`)
+			.get(`https://social-umber-seven.vercel.app/users/about/${user?.email}`)
 			.then((data) => setuserData(data.data));
 	}, [user?.email]);
 	console.log(userData, "about");
@@ -24,7 +24,10 @@ const About = () => {
 			adress: data.adress,
 		};
 		axios
-			.patch(`https://social-umber-seven.vercel.app/${userData._id}`, newdata)
+			.patch(
+				`https://social-umber-seven.vercel.app/users/${userData._id}`,
+				newdata
+			)
 			.then((data) => {
 				console.log(data);
 				// if (data.data.insertedId) {
