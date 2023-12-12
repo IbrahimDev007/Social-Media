@@ -8,7 +8,7 @@ const usePostHook = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ["status"],
-		enabled: !loading,
+		// enabled: !loading,
 		queryFn: async () => {
 			const res = await axios("https://social-umber-seven.vercel.app/status");
 			return res.data;

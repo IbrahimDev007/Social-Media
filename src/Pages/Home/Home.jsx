@@ -11,6 +11,7 @@ const Home = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ["status"],
+		// enabled: !loading,
 		queryFn: async () => {
 			const res = await axios.get(
 				"https://social-umber-seven.vercel.app/popular"
