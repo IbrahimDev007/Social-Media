@@ -2,23 +2,29 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import useAuthHook from "../../Hooks/useAuthHook";
 
 const About = () => {
 	const { register, handleSubmit, reset } = useForm();
-
+	const { user } = useAuthHook();
 	const {
 		data: userData = [],
 		isLoading: loading,
 		refetch,
 	} = useQuery({
 		queryKey: ["userData"],
+		enabled: !!user?.email,
 		queryFn: async () => {
 			const res = await axios.get(
-				"https://social-umber-seven.vercel.app/users/about/${user?.email}"
+				`https://social-umber-seven.vercel.app/users/about/${user?.email}`
 			);
 			return res.data;
 		},
 	});
+
+	if (loading) {
+		<span className="loading loading-infinity loading-lg text-center"></span>;
+	}
 
 	const onSubmit = (data) => {
 		const newdata = {
