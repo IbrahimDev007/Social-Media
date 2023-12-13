@@ -1,14 +1,21 @@
 import { CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import useAuthHook from "../Hooks/useAuthHook";
+import { BsPersonDashFill, BsPersonHeart } from "react-icons/bs";
+import {
+	SiGnuprivacyguard,
+	SiHomeassistant,
+	SiMediafire,
+} from "react-icons/si";
+import { FaBookOpen } from "react-icons/fa";
 
 const Navbar = () => {
 	const { user, logOut } = useAuthHook();
 
 	const isActive = ({ isActive }) =>
 		isActive
-			? "text-lg text-red-600 hover:text-sky-600 "
-			: "hover:text-sky-600 text-white";
+			? " flex text-lg text-red-600 hover:text-sky-600 "
+			: "flex gap-2 hover:text-sky-600 text-white";
 
 	return (
 		<div className="navbar  bg-black text-base-100  ">
@@ -23,33 +30,36 @@ const Navbar = () => {
 					>
 						<li>
 							<NavLink to="/" className={isActive}>
+								<SiHomeassistant className="text-blue-600 text-lg " />
 								Home
 							</NavLink>
 						</li>
 						<li>
 							<NavLink to="/media" className={isActive}>
+								<SiMediafire />
 								Media
 							</NavLink>
 						</li>
-
+						<li>
+							<NavLink to="/register" className={isActive}>
+								<SiGnuprivacyguard
+									className="text-blue-600 text-lg
+								"
+								/>
+								Register
+							</NavLink>
+						</li>
 						{user && (
 							<li>
 								<NavLink to="about" className={isActive}>
 									About
+									<FaBookOpen
+										className="text-blue-600 text-lg
+								"
+									/>
 								</NavLink>
 							</li>
 						)}
-
-						<li>
-							<NavLink to="login" className={isActive}>
-								Login
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="register" className={isActive}>
-								Register
-							</NavLink>
-						</li>
 					</ul>
 				</div>
 				<NavLink className="btn btn-ghost text-xl">Social-Media</NavLink>
@@ -58,58 +68,80 @@ const Navbar = () => {
 				<ul className="btn btn-ghost bg-black shadow-none gap-8 font-light join-horizontal  text-white px-1">
 					<li>
 						<NavLink to="/" className={isActive}>
+							<SiHomeassistant className="text-lg text-blue-600" />
 							Home
 						</NavLink>
 					</li>
 					<li>
 						<NavLink to="/media" className={isActive}>
+							<SiMediafire className="text-blue-600 text-lg" />
 							Media
+						</NavLink>
+					</li>
+					<li>
+						<NavLink to="/register" className={isActive}>
+							<SiGnuprivacyguard className="text-green-600 text-lg" />
+							Register
 						</NavLink>
 					</li>
 					{user && (
 						<li>
 							<NavLink to="about" className={isActive}>
+								<FaBookOpen
+									className="text-blue-600 text-lg
+								"
+								/>
 								About
 							</NavLink>
 						</li>
 					)}
-					<li>
-						<NavLink to="login" className={isActive}>
-							Login
-						</NavLink>
-					</li>
-					<li>
-						<NavLink to="register" className={isActive}>
-							Register
-						</NavLink>
-					</li>
 				</ul>
 			</div>
 			<div className="navbar-end">
 				{/* Login condition */}
 
-				<div className="dropdown dropdown-end">
-					<div
-						tabIndex={0}
-						role="button"
-						className="btn btn-ghost btn-circle avatar"
-					>
-						<div className="w-10 rounded-full">
-							<img
-								alt="Tailwind CSS Navbar component"
-								src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-							/>
+				{(user && (
+					<div className="dropdown dropdown-end">
+						<div
+							tabIndex={0}
+							role="button"
+							className="btn btn-ghost btn-circle avatar"
+						>
+							<div className="w-10 rounded-full">
+								<img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+							</div>
 						</div>
+						<ul
+							tabIndex={0}
+							className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
+						>
+							<li>
+								<NavLink to="about" className={isActive}>
+									<FaBookOpen
+										className="text-blue-600 text-lg
+								"
+									/>
+									About
+								</NavLink>
+							</li>
+							<li onClick={() => logOut()}>
+								<NavLink>
+									<BsPersonDashFill className=" text-lg text-red-600" />
+									Logout
+								</NavLink>
+							</li>
+						</ul>
 					</div>
-					<ul
-						tabIndex={0}
-						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
-					>
-						<li onClick={() => logOut()}>
-							<NavLink>Logout</NavLink>
+				)) || (
+					<ul>
+						<li>
+							<NavLink to="login" className={isActive}>
+								Login
+								<BsPersonHeart className="text-lg text-red-600" />
+							</NavLink>
 						</li>
 					</ul>
-				</div>
+				)}
 			</div>
 		</div>
 	);

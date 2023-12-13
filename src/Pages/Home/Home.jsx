@@ -33,6 +33,7 @@ const Home = () => {
 				isLoading(
 					<span className="loading loading-infinity loading-lg text-center"></span>
 				)}
+			<Title title={"Popular"} icon={""} />
 			<div className="grid grid-cols-1 md:lg:grid-cols-2 xl:grid-cols-3 gap-4  justify-items-center">
 				{Status.slice(0, 3).map((status, index) => {
 					return (
@@ -50,7 +51,7 @@ const Home = () => {
 				})}
 			</div>
 
-			{/* <Title title={"Most Like"} icon={""} /> */}
+			<Title title={"Most Like"} icon={""} />
 		</div>
 	);
 };

@@ -15,17 +15,16 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const [Like, setLike] = useState(false);
 	const onSubmit = (data) => {
 		// console.log(data);
-		axios
-			.patch(`https://social-umber-seven.vercel.app/comment/${id}`, data)
-			.then(() => {
-				// console.log(response);
-				reset();
-				refetch();
-			});
+		axios.patch(`http://localhost:3000/comment/${id}`, data).then(() => {
+			// console.log(response);
+			reset();
+			refetch();
+		});
 	};
 
 	const onLike = () => {
 		setLike(!Like);
+		console.log(_id, "onLike");
 		axios
 			.patch(`http://localhost:3000/like/${id}`, {
 				like: Like,
@@ -44,7 +43,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 					<h2 className="card-title">{title}</h2>
 					<p>{desc}</p>
 					<div className="card-actions justify-between ">
-						{(!user && (
+						{(!user && _id && (
 							<button
 								className="btn btn-error btn-outline btn-sm
                             "
