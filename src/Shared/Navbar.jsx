@@ -14,8 +14,8 @@ const Navbar = () => {
 
 	const isActive = ({ isActive }) =>
 		isActive
-			? " flex text-lg text-red-600 hover:text-sky-600 "
-			: "flex gap-2 hover:text-sky-600 text-white";
+			? " flex gap-2 items-center  text-red-600 hover:text-sky-600 "
+			: "flex gap-2  items-center hover:text-sky-600 text-white";
 
 	return (
 		<div className="navbar  bg-black text-base-100  ">
@@ -62,7 +62,13 @@ const Navbar = () => {
 						)}
 					</ul>
 				</div>
-				<NavLink className="btn btn-ghost text-xl">Social-Media</NavLink>
+				<NavLink to="/" className="btn btn-ghost text-xl">
+					<img
+						src="../../public/Social.png"
+						className="object-cover  w-10 h-10"
+					/>
+					Social-Media
+				</NavLink>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="btn btn-ghost bg-black shadow-none gap-8 font-light join-horizontal  text-white px-1">
