@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuthHook from "../../Hooks/useAuthHook";
+import { ImGoogle } from "react-icons/im";
 const Login = () => {
 	const {
 		register,
@@ -150,8 +151,11 @@ const Login = () => {
 									<span className="text-blue-900">Click here to register.</span>
 								</Link>
 								<div className="mx-auto my-4 px-2">
-									<button className="btn  btn-warning" onClick={handle_google}>
-										Google
+									<button
+										className="btn  btn-circle btn-outline btn-warning"
+										onClick={handle_google}
+									>
+										<ImGoogle />
 									</button>
 								</div>
 							</div>

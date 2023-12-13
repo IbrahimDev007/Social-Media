@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import useUserHook from "../Hooks/useUserHook";
 import useAuthHook from "../Hooks/useAuthHook";
+import { FaCommentAlt } from "react-icons/fa";
 const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
@@ -75,6 +76,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 						<div className="collapse bg-base-200">
 							<input type="checkbox" className="peer" />
 							<div className="collapse-title bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
+								<FaCommentAlt />
 								Login to Comment
 							</div>
 							<div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">

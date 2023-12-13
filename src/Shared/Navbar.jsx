@@ -86,7 +86,7 @@ const Navbar = () => {
 					</li>
 					<li>
 						<NavLink to="/register" className={isActive}>
-							<SiGnuprivacyguard className="text-green-600 text-lg" />
+							<SiGnuprivacyguard className="text-blue-600 text-lg" />
 							Register
 						</NavLink>
 					</li>

@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useUserHook from "../Hooks/useUserHook";
 import useAuthHook from "../Hooks/useAuthHook";
+import { ImImage } from "react-icons/im";
+import { MdOutlinePostAdd } from "react-icons/md";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const TextArea = () => {
 	const { register, handleSubmit, reset } = useForm();
@@ -77,12 +79,20 @@ const TextArea = () => {
 			<div className="flex justify-between">
 				{(!user && (
 					<button className="btn btn-info text-white" disabled>
-						Add Post
+						<MdOutlinePostAdd />
+						Post
 					</button>
-				)) || <button className="btn btn-info text-white">Add Post</button>}
+				)) || (
+					<button className="btn btn-info text-white">
+						<MdOutlinePostAdd /> Post
+					</button>
+				)}
 				<div className="form-control">
 					<label className="label btn btn-error  text-white ">
-						<span className="label-text px-6  text-white">Upload Image</span>
+						<span className="label-text px-6  text-white">
+							<ImImage />
+							Image
+						</span>
 						<div className="">
 							<input
 								type="file"
