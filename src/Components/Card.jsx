@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Thread from "./Thread";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import useUserHook from "../Hooks/useUserHook";
 import useAuthHook from "../Hooks/useAuthHook";
@@ -24,9 +24,18 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 		});
 	};
 
+	useEffect(() => {
+		const LikeValid = like.includes(_id);
+		if (LikeValid) {
+			setLike(true);
+		} else {
+			setLike(false);
+		}
+	}, [_id, like]);
+
 	const onLike = () => {
 		setLike(!Like);
-		console.log(_id, "onLike");
+		console.log(_id, like, "onLike");
 		axios
 			.patch(`http://localhost:3000/like/${id}`, {
 				like: Like,
@@ -62,9 +71,8 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
                             "
 								onClick={onLike}
 							>
+								{like.length === 0 ? "" : like.length}
 								{Like ? <BiSolidLike /> : <BiLike />}
-
-								{like}
 							</button>
 						)}
 						<Link

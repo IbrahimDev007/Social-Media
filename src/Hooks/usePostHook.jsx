@@ -10,7 +10,7 @@ const usePostHook = () => {
 		queryKey: ["status"],
 		// enabled: !!!loading,
 		queryFn: async () => {
-			const res = await axios("http://localhost:3000/status");
+			const res = await axios.get("http://localhost:3000/status");
 			return res.data;
 		},
 	});
