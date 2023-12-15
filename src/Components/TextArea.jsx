@@ -62,7 +62,7 @@ const TextArea = () => {
 					// value={userData?.name}
 					type="text"
 					placeholder="Title"
-					className="input input-bordered"
+					className="input input-success input-bordered"
 					{...register("title", { required: true })}
 				/>
 			</div>
@@ -88,8 +88,8 @@ const TextArea = () => {
 					</button>
 				)}
 				<div className="form-control">
-					<label className="label btn btn-error  text-white ">
-						<span className="label-text px-6  text-white">
+					<label className="label btn btn-error  btn-outline">
+						<span className=" px-6  ">
 							<ImImage />
 							Image
 						</span>

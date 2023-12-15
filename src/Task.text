@@ -1,21 +1,26 @@
 task:
 -------------
-"login codition"
-"icon set"
+% "login codition"
+% "icon set"
 "title"
-"about->login->profile->logout"
+% "about->login->profile->logout"
 "animation pic"
 "like condition one person only one like"
 "lke count"
-"most like"
-"most comment"
-"comment with pic"
-"feture"
+% "most like"
+% "most comment"
+% "comment with pic"
+"feture content"
 "framer motion"
 "post with pic"
+"your post"
 "individual delete option"
 "post edit option"
-"grid lay
+"grid layout wrap"
 img lazy loading
+"popular content creator"
+"our client"
+"contuct us"
+
 ---------------------------------------
 

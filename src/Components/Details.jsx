@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import usePostHook from "../Hooks/usePostHook";
 import { BiLike, BiSolidLike } from "react-icons/bi";
+import { MdOutlineRecommend } from "react-icons/md";
+import { FaCommentAlt } from "react-icons/fa";
 
 const Details = () => {
 	const [refetch] = usePostHook();
@@ -55,7 +57,7 @@ const Details = () => {
 							<div className="collapse bg-base-200">
 								<input type="checkbox" className="peer" />
 								<div className="collapse-title bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
-									Click to Comment
+									Login to Comment <FaCommentAlt />
 								</div>
 								<div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-secondary-content">
 									<form className="card-body" onSubmit={handleSubmit(onSubmit)}>

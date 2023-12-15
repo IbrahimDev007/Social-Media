@@ -1,3 +1,4 @@
+import { SiMediafire } from "react-icons/si";
 import Card from "../../Components/Card";
 import Title from "../../Components/Title";
 import usePostHook from "../../Hooks/usePostHook";
@@ -7,7 +8,7 @@ const Media = () => {
 
 	return (
 		<div>
-			<Title title={"Media Post"} icon={""} />
+			<Title title={"Media Post"} icon={<SiMediafire />} />
 			<div className="grid grid-cols-1 md:lg:xl:grid-cols-2 justify-items-center">
 				{(loading === true || status === (null || undefined || "" || [])) && (
 					<span className="loading loading-infinity loading-lg text-center"></span>

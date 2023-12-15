@@ -14,7 +14,7 @@ const Navbar = () => {
 
 	const isActive = ({ isActive }) =>
 		isActive
-			? " flex gap-2 items-center  text-red-600 hover:text-sky-600 "
+			? " flex gap-2 items-center  text-amber-300 hover:text-sky-600 "
 			: "flex gap-2  items-center hover:text-sky-600 text-white";
 
 	return (
@@ -62,7 +62,7 @@ const Navbar = () => {
 						)}
 					</ul>
 				</div>
-				<NavLink to="/" className="btn btn-ghost text-xl">
+				<NavLink to="/" className="btn btn-ghost hover:text-cyan-500 text-xl">
 					<img
 						src="../../public/Social.png"
 						className="object-cover  w-10 h-10"
@@ -119,7 +119,7 @@ const Navbar = () => {
 						</div>
 						<ul
 							tabIndex={0}
-							className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black rounded-box w-52"
+							className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 text-white"
 						>
 							<li>
 								<NavLink to="about" className={isActive}>
@@ -130,7 +130,7 @@ const Navbar = () => {
 									About
 								</NavLink>
 							</li>
-							<li onClick={() => logOut()}>
+							<li onClick={() => logOut()} className={isActive}>
 								<NavLink>
 									<BsPersonDashFill className=" text-lg text-red-600" />
 									Logout

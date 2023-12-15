@@ -15,6 +15,7 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	const { register, handleSubmit, reset } = useForm();
 	const [Like, setLike] = useState(false);
 	const onSubmit = (data) => {
+		data.userpic = user.photoURL;
 		// console.log(data);
 		axios.patch(`http://localhost:3000/comment/${id}`, data).then(() => {
 			// console.log(response);
