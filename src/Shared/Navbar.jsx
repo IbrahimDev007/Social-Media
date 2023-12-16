@@ -41,13 +41,15 @@ const Navbar = () => {
 							</NavLink>
 						</li>
 						<li>
-							<NavLink to="/register" className={isActive}>
-								<SiGnuprivacyguard
-									className="text-blue-600 text-lg
+							{!user && (
+								<NavLink to="/register" className={isActive}>
+									<SiGnuprivacyguard
+										className="text-blue-600 text-lg
 								"
-								/>
-								Register
-							</NavLink>
+									/>
+									Register
+								</NavLink>
+							)}
 						</li>
 						{user && (
 							<>
@@ -96,10 +98,15 @@ const Navbar = () => {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/register" className={isActive}>
-							<SiGnuprivacyguard className="text-blue-600 text-lg" />
-							Register
-						</NavLink>
+						{!user && (
+							<NavLink to="/register" className={isActive}>
+								<SiGnuprivacyguard
+									className="text-blue-600 text-lg
+								"
+								/>
+								Register
+							</NavLink>
+						)}
 					</li>
 					{user && (
 						<>

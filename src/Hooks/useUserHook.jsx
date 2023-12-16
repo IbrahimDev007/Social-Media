@@ -10,12 +10,14 @@ const useUserHook = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ["userData"],
-		enabled: !!user?.email,
+		// enabled: !!user?.email,
 		queryFn: async () => {
-			const res = await axios.get(
-				`http://localhost/3000/users/about/${user?.email}`
-			);
-			return res.data;
+			if (user?.email) {
+				const res = await axios.get(
+					`http://localhost:3000/users/about/${user?.email}`
+				);
+				return res.data;
+			}
 		},
 	});
 
