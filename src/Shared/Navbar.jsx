@@ -50,15 +50,26 @@ const Navbar = () => {
 							</NavLink>
 						</li>
 						{user && (
-							<li>
-								<NavLink to="about" className={isActive}>
-									About
-									<FaBookOpen
-										className="text-blue-600 text-lg
+							<>
+								<li>
+									<NavLink to="about" className={isActive}>
+										<FaBookOpen
+											className="text-blue-600 text-lg
 								"
-									/>
-								</NavLink>
-							</li>
+										/>
+										About
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="post" className={isActive}>
+										<FaBookOpen
+											className="text-blue-600 text-lg
+								"
+										/>
+										My Post
+									</NavLink>
+								</li>
+							</>
 						)}
 					</ul>
 				</div>
@@ -91,15 +102,26 @@ const Navbar = () => {
 						</NavLink>
 					</li>
 					{user && (
-						<li>
-							<NavLink to="about" className={isActive}>
-								<FaBookOpen
-									className="text-blue-600 text-lg
+						<>
+							<li>
+								<NavLink to="about" className={isActive}>
+									<FaBookOpen
+										className="text-blue-600 text-lg
 								"
-								/>
-								About
-							</NavLink>
-						</li>
+									/>
+									About
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="post" className={isActive}>
+									<FaBookOpen
+										className="text-blue-600 text-lg
+								"
+									/>
+									My Post
+								</NavLink>
+							</li>
+						</>
 					)}
 				</ul>
 			</div>

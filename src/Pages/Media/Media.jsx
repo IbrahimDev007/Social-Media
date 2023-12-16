@@ -35,6 +35,7 @@ const Media = () => {
 								like={status?.like}
 								comment={status?.Comment}
 								refetch={refetch}
+								photo={status?.photoUrl}
 							/>
 						);
 					})}

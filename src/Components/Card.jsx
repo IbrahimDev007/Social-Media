@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import useUserHook from "../Hooks/useUserHook";
 import useAuthHook from "../Hooks/useAuthHook";
-import { FaCommentAlt } from "react-icons/fa";
-const Card = ({ title, desc, like, comment, refetch, id, image }) => {
+import { FaCommentAlt, FaEdit, FaTrash } from "react-icons/fa";
+import { VscThreeBars } from "react-icons/vsc";
+const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
 	const { user } = useAuthHook();
@@ -47,9 +48,39 @@ const Card = ({ title, desc, like, comment, refetch, id, image }) => {
 	return (
 		<div>
 			<div className="card card-compact w-96 bg-base-100 shadow-xl">
-				<figure>
-					<img src={image} alt="Shoes" />
-				</figure>
+				<div className="relative">
+					<figure>
+						<img src={image} alt="Shoes" />
+					</figure>
+					<img
+						src={
+							(photo && photo) ||
+							"https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg?size=626&ext=jpg"
+						}
+						alt="img_profile"
+						className="absolute border  top-0 left-0 rounded-full w-12 h-12"
+					/>
+
+					<details className="dropdown absolute top-0 right-0 flex">
+						<summary>
+							<VscThreeBars />
+						</summary>
+						<ul className=" p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-20">
+							<li>
+								<button className=" btn-sm  btn-error flex items-center justify-center  btn-outline">
+									<FaTrash className="text-md " />
+									Delete
+								</button>
+							</li>
+							<li>
+								<button className="  btn-sm  btn-success flex items-center justify-center  btn-outline ">
+									<FaEdit />
+									Edit
+								</button>
+							</li>
+						</ul>
+					</details>
+				</div>
 				<div className="card-body">
 					<h2 className="card-title">{title}</h2>
 					<p>{desc}</p>

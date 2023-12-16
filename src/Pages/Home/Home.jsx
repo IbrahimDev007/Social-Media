@@ -59,6 +59,7 @@ const Home = () => {
 								like={status?.like}
 								comment={status?.Comment}
 								refetch={refetch}
+								photo={status?.photoUrl}
 							/>
 						);
 					})}
@@ -78,6 +79,7 @@ const Home = () => {
 								like={status?.like}
 								comment={status?.Comment}
 								refetch={refetch}
+								photo={status?.photoUrl}
 							/>
 						);
 					})}
@@ -96,6 +98,7 @@ const Home = () => {
 								like={status?.like}
 								comment={status?.Comment}
 								refetch={refetch}
+								photo={status?.photoUrl}
 							/>
 						);
 					})}

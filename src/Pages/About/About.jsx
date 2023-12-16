@@ -1,31 +1,15 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
-import useAuthHook from "../../Hooks/useAuthHook";
+import useUserHook from "../../Hooks/useUserHook";
 
 const About = () => {
 	const { register, handleSubmit, reset } = useForm();
-	const { user } = useAuthHook();
-	const {
-		data: userData = [],
-		isLoading: loading,
-		refetch,
-	} = useQuery({
-		queryKey: ["userData"],
-		enabled: !!user?.email,
-		queryFn: async () => {
-			const res = await axios.get(
-				`https://social-umber-seven.vercel.app/users/about/${user?.email}`
-			);
-			return res.data;
-		},
-	});
+	const [userData, loading, refetch] = useUserHook();
 
 	if (loading) {
 		<span className="loading loading-infinity loading-lg text-center"></span>;
 	}
-
 	const onSubmit = (data) => {
 		const newdata = {
 			name: data.name,
@@ -36,7 +20,7 @@ const About = () => {
 		};
 		axios
 			.patch(
-				`https://social-umber-seven.vercel.app/users/${userData._id}`,
+				`http://social-umber-seven.vercel.app/users/${userData._id}`,
 				newdata
 			)
 			.then((data) => {

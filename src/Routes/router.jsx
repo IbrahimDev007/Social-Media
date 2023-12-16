@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import Details from "../Components/Details";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyPost from "../Pages/MyPost/MyPost";
 //router added
 const router = createBrowserRouter([
 	{
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
 			{
 				path: "media",
 				element: <Media />,
+			},
+			{
+				path: "post",
+				element: <MyPost />,
 			},
 			{
 				path: "about",

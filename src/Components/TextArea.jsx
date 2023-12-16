@@ -31,6 +31,7 @@ const TextArea = () => {
 						like: [],
 						Comment: [],
 						image: imgURL,
+						photoURL: user?.photoURL,
 					};
 					console.log(newItem);
 					axios
