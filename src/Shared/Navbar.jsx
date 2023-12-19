@@ -1,7 +1,7 @@
 import { CiMenuFries } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import useAuthHook from "../Hooks/useAuthHook";
-import { BsPersonDashFill, BsPersonHeart } from "react-icons/bs";
+import { BsBox, BsPersonDashFill, BsPersonHeart } from "react-icons/bs";
 import {
 	SiGnuprivacyguard,
 	SiHomeassistant,
@@ -64,7 +64,7 @@ const Navbar = () => {
 								</li>
 								<li>
 									<NavLink to="post" className={isActive}>
-										<FaBookOpen
+										<BsBox
 											className="text-blue-600 text-lg
 								"
 										/>
@@ -76,10 +76,7 @@ const Navbar = () => {
 					</ul>
 				</div>
 				<NavLink to="/" className="btn btn-ghost hover:text-cyan-500 text-xl">
-					<img
-						src="../../public/Social.png"
-						className="object-cover  w-10 h-10"
-					/>
+					<img src="/Social.png" className="object-cover  w-10 h-10" />
 					Social-Media
 				</NavLink>
 			</div>
@@ -121,7 +118,7 @@ const Navbar = () => {
 							</li>
 							<li>
 								<NavLink to="post" className={isActive}>
-									<FaBookOpen
+									<BsBox
 										className="text-blue-600 text-lg
 								"
 									/>

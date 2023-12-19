@@ -7,7 +7,10 @@ import Card from "../../Components/Card";
 const MyPost = () => {
 	const [status, loading, refetch] = usePostHook();
 	const [userData] = useUserHook();
-	const post = status.filter((status) => status.user_id === userData._id);
+	let post;
+	if (Array.isArray(status)) {
+		post = status.filter((status) => status.user_id === userData._id);
+	}
 
 	return (
 		<div className=" flex flex-col gap-2  justify-center items-center ">

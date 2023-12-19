@@ -61,26 +61,6 @@ const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 						className="absolute border  top-0 left-0 rounded-full w-12 h-12"
 					/>
 
-					{/* <details className="dropdown absolute top-0 right-0 flex">
-						<summary>
-							
-						</summary>
-						<ul className=" p- shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-20">
-							<li>
-								<button className=" btn-sm  btn-error flex items-center justify-center  btn-outline">
-									<FaTrash className="text-md " />
-									Delete
-								</button>
-							</li>
-							<li>
-								<button className="  btn-sm  btn-success flex items-center justify-center  btn-outline ">
-									<FaEdit />
-									Edit
-								</button>
-							</li>
-						</ul>
-					</details> */}
-
 					<details className="dropdown  dropdown-end top-0 right-0 absolute">
 						<summary className="m-1 btn  btn-sm btn-outline btn-circle">
 							<VscThreeBars />

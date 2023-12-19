@@ -3,11 +3,21 @@ import TextArea from "../../Components/TextArea";
 import Title from "../../Components/Title";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { MdOutlineRecommend } from "react-icons/md";
+import { MdOutlineAdsClick, MdOutlineRecommend } from "react-icons/md";
 import { LuPartyPopper } from "react-icons/lu";
-import { FaCommentAlt } from "react-icons/fa";
+import {
+	FaCommentAlt,
+	FaCreativeCommonsShare,
+	FaFeather,
+	FaFileContract,
+} from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import ContactUs from "./ContactUs";
+import OurClient from "./OurClient";
+
+import Feture from "./Feture";
+import CreativeCreator from "./CreativeCreator";
 
 const Home = () => {
 	const {
@@ -103,6 +113,20 @@ const Home = () => {
 						);
 					})}
 			</div>
+			<Title title={"Our Client"} icon={<MdOutlineAdsClick />} />
+			{/* <div className="my-4">
+				<OurClient />
+			</div> */}
+			<Title title={"Contuct Us"} icon={<FaFileContract />} />
+			<div>
+				<ContactUs />
+			</div>
+			<Title title={"Feteur Post"} icon={<FaFeather />} />
+			<div>
+				<Feture />
+			</div>
+			<Title title={"Popular infulencer"} icon={<FaCreativeCommonsShare />} />
+			<CreativeCreator />
 		</div>
 	);
 };
