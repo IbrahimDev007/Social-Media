@@ -3,6 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuthHook from "../../Hooks/useAuthHook";
 import { ImGoogle } from "react-icons/im";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
+import Lottie from "react-lottie";
+import animationData from "/public/Animation - 1703009842746";
+
 const Login = () => {
 	const {
 		register,
@@ -12,7 +16,14 @@ const Login = () => {
 	const { signIn, googleSignIn } = useAuthHook();
 	const navigate = useNavigate();
 	const location = useLocation();
-
+	const defaultOptions = {
+		loop: true,
+		autoplay: true,
+		animationData: animationData,
+		rendererSettings: {
+			preserveAspectRatio: "xMidYMid slice",
+		},
+	};
 	const from = location.state?.from?.pathname || "/";
 	const handle_google = () => {
 		googleSignIn().then((result) => {
@@ -74,12 +85,15 @@ const Login = () => {
 									</p>
 								</div>
 
-								<img
-									src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?size=626&ext=jpg"
+								<Lottie
+									options={defaultOptions}
+									height={400}
+									width={400}
 									alt="login"
 									className="object-cover"
 								/>
 							</div>
+							s
 						</div>
 						<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 							<form className="card-body" onSubmit={handleSubmit(onSubmit)}>

@@ -8,6 +8,8 @@ import useUserHook from "../Hooks/useUserHook";
 import useAuthHook from "../Hooks/useAuthHook";
 import { FaCommentAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { VscThreeBars } from "react-icons/vsc";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
@@ -50,9 +52,10 @@ const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 			<div className="card card-compact w-96 bg-base-100 shadow-xl">
 				<div className="relative">
 					<figure>
-						<img src={image} alt="Shoes" />
+						<LazyLoadImage src={image} alt="image" effect="blur" />
 					</figure>
-					<img
+
+					<LazyLoadImage
 						src={
 							(photo && photo) ||
 							"https://img.freepik.com/free-vector/young-woman-white_25030-39552.jpg?size=626&ext=jpg"
@@ -60,7 +63,6 @@ const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 						alt="img_profile"
 						className="absolute border  top-0 left-0 rounded-full w-12 h-12"
 					/>
-
 					<details className="dropdown  dropdown-end top-0 right-0 absolute">
 						<summary className="m-1 btn  btn-sm btn-outline btn-circle">
 							<VscThreeBars />

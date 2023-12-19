@@ -3,7 +3,7 @@ const FetureCard = ({ title, img, sub }) => {
 	return (
 		<div
 			className="flex flex-col h-fit w-fit relative m-0  shadow-black border-1  shadow-inner
-          border-black"
+          border-black card"
 		>
 			<img src={img} alt="" className="object-cover  w-72 h-72 border-0  p-0" />
 			<div className="w-72 absolute  block   hover:hidden shadow-primary-content bottom-0 p-3 shadow-md   ">
