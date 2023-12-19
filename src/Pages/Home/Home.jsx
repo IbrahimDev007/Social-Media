@@ -14,10 +14,10 @@ import {
 import { AiFillLike } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ContactUs from "./ContactUs";
-import OurClient from "./OurClient";
 
 import Feture from "./Feture";
 import CreativeCreator from "./CreativeCreator";
+import OurClient from "./OurClient";
 
 const Home = () => {
 	const {
@@ -114,9 +114,9 @@ const Home = () => {
 					})}
 			</div>
 			<Title title={"Our Client"} icon={<MdOutlineAdsClick />} />
-			{/* <div className="my-4">
-				<OurClient />
-			</div> */}
+
+			<OurClient />
+
 			<Title title={"Contuct Us"} icon={<FaFileContract />} />
 			<div>
 				<ContactUs />

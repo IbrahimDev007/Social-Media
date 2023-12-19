@@ -6,9 +6,9 @@ const FetureCard = ({ title, img, sub }) => {
           border-black"
 		>
 			<img src={img} alt="" className="object-cover  w-72 h-72 border-0  p-0" />
-			<div className="w-72 absolute  block   hover:hidden text-black bottom-0 p-3 shadow-md shadow-slate-800  ">
-				<h1 className="font-bold text-xl ">{title}</h1>
-				<p className="font-normal text-sm ">{truncatedSub}</p>
+			<div className="w-72 absolute  block   hover:hidden shadow-primary-content bottom-0 p-3 shadow-md   ">
+				<h1 className="font-bold text-xl text-sky-950 ">{title}</h1>
+				<p className="font-normal text-sm text-sky-700  ">{truncatedSub}</p>
 			</div>
 		</div>
 	);

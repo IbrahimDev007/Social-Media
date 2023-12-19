@@ -3,10 +3,11 @@ import CreatorItemCard from "./Component/CreatorItemCard";
 
 const CreativeCreator = () => {
 	return (
-		<div className="py-10 px-4 bg-sky-300">
-			<h3 className="font-extrabold pb-4 text-5xl text-center">
+		<div className="py-10 px-2 bg-sky-300">
+			<h3 className="font-extrabold pb-4 text-5xl text-center w-20">
 				Lorem ipsum dolor sit amet <br />
-				consectetur adipisicing elit. Necessitatibus, ea.
+				consectetur adipisicing <br />
+				elit. Necessitatibus, ea.
 			</h3>
 			{/* alignment problem */}
 			<p className="font-bold text-3xl text-slate-600 text-center">
