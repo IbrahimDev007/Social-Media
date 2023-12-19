@@ -3,8 +3,8 @@ import CreatorItemCard from "./Component/CreatorItemCard";
 
 const CreativeCreator = () => {
 	return (
-		<div className="py-10 px-2 bg-sky-300">
-			<h3 className="font-extrabold pb-4 text-5xl text-center w-20">
+		<div className=" card py-10 px-2 bg-sky-300">
+			<h3 className="font-extrabold pb-4 text-5xl text-center ">
 				Lorem ipsum dolor sit amet <br />
 				consectetur adipisicing <br />
 				elit. Necessitatibus, ea.
