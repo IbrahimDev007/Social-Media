@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthHook from "../../Hooks/useAuthHook";
 import { ImGoogle } from "react-icons/im";
-
+import { motion } from "framer-motion";
 const Register = () => {
 	const {
 		register,
@@ -107,12 +107,20 @@ const Register = () => {
 										join groups.
 									</p>
 								</div>
-
-								<img
-									src="https://img.freepik.com/free-vector/placeholder-concept-illustration_114360-4847.jpg?size=626&ext=jpg"
-									alt="Register"
-									className="object-cover"
-								/>
+								<motion.div
+									animate={{ x: 20 }}
+									transition={{
+										ease: "easeIn",
+										duration: 2,
+										x: { duration: 2 },
+									}}
+								>
+									<img
+										src="https://img.freepik.com/free-vector/placeholder-concept-illustration_114360-4847.jpg?size=626&ext=jpg"
+										alt="Register"
+										className="object-cover"
+									/>
+								</motion.div>
 							</div>
 						</div>
 						<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
