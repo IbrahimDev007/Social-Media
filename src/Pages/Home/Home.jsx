@@ -14,7 +14,7 @@ import {
 import { AiFillLike } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ContactUs from "./ContactUs";
-
+import { motion, useScroll } from "framer-motion";
 import Feture from "./Feture";
 import CreativeCreator from "./CreativeCreator";
 import OurClient from "./OurClient";
@@ -33,7 +33,7 @@ const Home = () => {
 		},
 	});
 	const [loading, setLoading] = useState(false);
-
+	const { scrollYProgress } = useScroll();
 	useEffect(() => {
 		if (!Status || Status.length === 0) {
 			setLoading(true);
@@ -46,6 +46,10 @@ const Home = () => {
 
 	return (
 		<div className="   my-2    ">
+			<motion.div
+				className="fixed top-0 left-0 right-0 bottom-0  h-2 bg-info transform-cpu z-20"
+				style={{ scaleX: scrollYProgress }}
+			/>
 			<Title title={"Add Post"} icon={<MdOutlineRecommend />} />
 			<div className="flex flex-col items-center">
 				<TextArea className="card w-fit py-1 px-2 border-2" />
