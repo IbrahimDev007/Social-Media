@@ -10,10 +10,21 @@ import { FaCommentAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { VscThreeBars } from "react-icons/vsc";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
+const Card = ({
+	title,
+	desc,
+	like,
+	comment,
+	refetch,
+	id,
+	image,
+	photo,
+	userId,
+}) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
 	const { user } = useAuthHook();
+	const editiable = _id === userId;
 
 	const { register, handleSubmit, reset } = useForm();
 	const [Like, setLike] = useState(false);
@@ -63,25 +74,27 @@ const Card = ({ title, desc, like, comment, refetch, id, image, photo }) => {
 						alt="img_profile"
 						className="absolute border  top-0 left-0 rounded-full w-12 h-12"
 					/>
-					<details className="dropdown  dropdown-end top-0 right-0 absolute">
-						<summary className="m-1 btn  btn-sm btn-outline btn-circle">
-							<VscThreeBars />
-						</summary>
-						<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
-							<li>
-								<button className=" btn-sm  btn-error  btn-outline">
-									<FaTrash className="text-sm " />
-									Delete
-								</button>
-							</li>
-							<li>
-								<button className="  btn-sm  btn-success  btn-outline ">
-									<FaEdit className="text-lg" />
-									Edit
-								</button>
-							</li>
-						</ul>
-					</details>
+					{editiable && (
+						<details className="dropdown  dropdown-end top-0 right-0 absolute">
+							<summary className="m-1 btn  btn-sm btn-outline btn-circle">
+								<VscThreeBars />
+							</summary>
+							<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
+								<li>
+									<button className=" btn-sm  btn-error  btn-outline">
+										<FaTrash className="text-sm " />
+										Delete
+									</button>
+								</li>
+								<li>
+									<button className="  btn-sm  btn-success  btn-outline ">
+										<FaEdit className="text-lg" />
+										Edit
+									</button>
+								</li>
+							</ul>
+						</details>
+					)}
 				</div>
 				<div className="card-body">
 					<h2 className="card-title">{title}</h2>

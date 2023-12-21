@@ -1,5 +1,4 @@
 const CreatorItemCard = ({ img, length }) => {
-	console.log(length, "infu-----");
 	return (
 		<div
 			className="h-72 w-44 bg-sky-600 border-y-2 rounded-tr-2xl rounded-bl-2xl px-2  flex justify-center items-center
