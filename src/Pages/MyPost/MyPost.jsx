@@ -3,11 +3,14 @@ import usePostHook from "../../Hooks/usePostHook";
 import useUserHook from "../../Hooks/useUserHook";
 import Title from "../../Components/Title";
 import Card from "../../Components/Card";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
 
 const MyPost = () => {
 	const [status, , refetch] = usePostHook();
 	const [userData, , loading] = useUserHook();
-
+	// ..
+	AOS.init();
 	if (!userData) {
 		// Handle the case where user data is not available
 		return <div>User data not available</div>;

@@ -3,11 +3,14 @@ import Card from "../../Components/Card";
 import Title from "../../Components/Title";
 import usePostHook from "../../Hooks/usePostHook";
 import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
 
 const Media = () => {
 	const [status, loading, refetch] = usePostHook();
 	const [Isloading, setLoading] = useState(false);
-
+	AOS.init();
 	useEffect(() => {
 		if (!status || status.length === 0) {
 			setLoading(true);
@@ -37,7 +40,7 @@ const Media = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
-								aosData="zoom-out-left"
+								aosData={"zoom-out-left"}
 							/>
 						);
 					})}

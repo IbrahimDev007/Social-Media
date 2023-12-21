@@ -23,6 +23,7 @@ const Card = ({
 	photo,
 	userId,
 	aosData,
+	durattion,
 }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
@@ -72,25 +73,9 @@ const Card = ({
 			});
 	};
 
-	// eslint-disable-next-line no-unused-vars
-	const editPost = (data) => {
-		axios
-			.patch(`http://localhost:3000/status/${id}`, { data })
-			.then((res) => {
-				console.log(res.data);
-				refetch();
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	};
-
 	return (
-		<div>
-			<div
-				data-aos={aosData}
-				className="card card-compact w-96 bg-base-100 shadow-xl"
-			>
+		<div data-aos={aosData} data-aos-duration="3000">
+			<div className="card card-compact w-96 bg-base-100 shadow-xl">
 				<div className="relative">
 					<figure>
 						<LazyLoadImage src={image} alt="image" effect="blur" />

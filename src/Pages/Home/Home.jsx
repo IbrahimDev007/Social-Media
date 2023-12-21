@@ -18,8 +18,13 @@ import { motion, useScroll } from "framer-motion";
 import Feture from "./Feture";
 import CreativeCreator from "./CreativeCreator";
 import OurClient from "./OurClient";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
 
 const Home = () => {
+	AOS.init();
+
 	const {
 		data: Status = [],
 		isLoading,
@@ -75,7 +80,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
-								aosData="zoom-in-left"
+								aosData={"flip-left"}
 							/>
 						);
 					})}
@@ -97,7 +102,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
-								aosData="zoom-in-right"
+								aosData={"zoom-in-right"}
 							/>
 						);
 					})}
@@ -118,7 +123,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
-								aosData="fade-in-left"
+								aosData={"fade-in-left"}
 							/>
 						);
 					})}
