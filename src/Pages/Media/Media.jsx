@@ -37,6 +37,7 @@ const Media = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
+								aosData="zoom-out-left"
 							/>
 						);
 					})}

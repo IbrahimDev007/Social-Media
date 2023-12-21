@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import useUserHook from "../Hooks/useUserHook";
-import useAuthHook from "../Hooks/useAuthHook";
 import { ImImage } from "react-icons/im";
 import { MdOutlinePostAdd } from "react-icons/md";
+import useAuthHook from "../../../Hooks/useAuthHook";
+import useUserHook from "../../../Hooks/useUserHook";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const EditTextArea = ({ id }) => {
@@ -57,7 +57,10 @@ const EditTextArea = ({ id }) => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="form-control">
+			<div
+				className="form-control text-black
+			"
+			>
 				<label className="label">
 					<span className="label-text">Title</span>
 				</label>
@@ -74,7 +77,7 @@ const EditTextArea = ({ id }) => {
 					<span className="label-text text-black  ">Status</span>
 				</label>
 				<textarea
-					className="textarea textarea-info textarea-lg w-[26rem] h-30 border-2 rounded-lg"
+					className="textarea textarea-info  text-success textarea-lg w-[26rem] h-30 border-2 rounded-lg"
 					placeholder="----- Write your  post "
 					{...register("status", { required: true })}
 				></textarea>

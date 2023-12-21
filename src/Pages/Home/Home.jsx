@@ -75,6 +75,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
+								aosData="zoom-in-left"
 							/>
 						);
 					})}
@@ -96,6 +97,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
+								aosData="zoom-in-right"
 							/>
 						);
 					})}
@@ -116,6 +118,7 @@ const Home = () => {
 								refetch={refetch}
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
+								aosData="fade-in-left"
 							/>
 						);
 					})}

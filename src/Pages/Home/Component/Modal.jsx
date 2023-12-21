@@ -4,7 +4,7 @@ const Modal = ({ modal, setModal, id }) => {
 	return (
 		<AnimatePresence>
 			{modal && (
-				<div className="px-5 fixed h-full w-full flex items-center justify-center top-0 left-0">
+				<div className="px-5 fixed h-full w-full flex items-center justify-center top-0 left-0 z-20">
 					<motion.div
 						initial={{ y: 50, opacity: 0 }}
 						animate={{
@@ -20,15 +20,16 @@ const Modal = ({ modal, setModal, id }) => {
 					>
 						<button
 							onClick={() => setModal((modal) => !modal)}
-							className="absolute top-0 right-0 -mt-4 -mr-4 btn-primary btn-xs btn-circle"
+							className="absolute top-0 right-0 -mt-4 -mr-4 btn-error z-[12]  btn-md btn-circle"
 						>
-							&times;
+							X
 						</button>
-
-						<EditTextArea id={id} />
+						<p>
+							<EditTextArea id={id} />
+						</p>
 					</motion.div>
 					<motion.div
-						initial={{ opacity: 0 }}
+						initial={{ opacity: 50 }}
 						animate={{
 							opacity: 1,
 						}}
@@ -37,7 +38,7 @@ const Modal = ({ modal, setModal, id }) => {
 						}}
 						transition={{ type: "spring", bounce: 0, duration: 0.2 }}
 						onClick={() => setModal((modal) => !modal)}
-						className="bg-transparent px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
+						className=" bg-slate-700 bg-opacity-20  px-5 fixed h-full w-full flex items-center justify-center top-0 left-0"
 					/>
 				</div>
 			)}

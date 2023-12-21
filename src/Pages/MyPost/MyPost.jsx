@@ -5,34 +5,41 @@ import Title from "../../Components/Title";
 import Card from "../../Components/Card";
 
 const MyPost = () => {
-	const [status, loading, refetch] = usePostHook();
-	const [userData] = useUserHook();
-	let post;
-	if (Array.isArray(status)) {
-		post = status.filter((status) => status.user_id === userData._id);
+	const [status, , refetch] = usePostHook();
+	const [userData, , loading] = useUserHook();
+
+	if (!userData) {
+		// Handle the case where user data is not available
+		return <div>User data not available</div>;
 	}
 
+	const post = Array.isArray(status)
+		? status.filter((status) => status.user_id === userData._id)
+		: [];
+
+	console.log("post-->", post, post.length);
+
 	return (
-		<div className=" flex flex-col gap-2  justify-center items-center ">
+		<div className="flex flex-col gap-2 justify-center items-center">
 			<Title title={"My Post"} icon={<MdOutlineRecommend />} />
-			{loading && (
-				<span className="loading loading-infinity loading-lg text-center"></span>
-			)}
+			{loading ||
+				(post.length === 0 && (
+					<span className="loading loading-infinity loading-lg text-center"></span>
+				))}
 			{Array.isArray(post) &&
-				post.map((status, index) => {
-					return (
-						<Card
-							key={index}
-							title={status?.title}
-							desc={status?.status}
-							image={status?.image}
-							id={status?._id}
-							like={status?.like}
-							comment={status?.Comment}
-							refetch={refetch}
-						/>
-					);
-				})}
+				post.map((status, index) => (
+					<Card
+						key={index}
+						title={status?.title}
+						desc={status?.status}
+						image={status?.image}
+						id={status?._id}
+						like={status?.like}
+						comment={status?.Comment}
+						refetch={refetch}
+						aosData={"zoom-out-right"}
+					/>
+				))}
 		</div>
 	);
 };

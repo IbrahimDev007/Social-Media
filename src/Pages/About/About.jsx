@@ -49,7 +49,7 @@ const About = () => {
 			>
 				<div className="hero-overlay bg-opacity-60"></div>
 				<div className="hero-content text-center text-neutral-content">
-					<div className="w-[50rem] flex justify-center">
+					<div className="w-fit  h-fit flex justify-center">
 						<div className="card  h-fit m-10 glass">
 							{/* <figure>
 								<img src={userData?.image} alt="car!" />
@@ -80,14 +80,14 @@ const About = () => {
 									</button>
 									<dialog
 										id="my_modal_1"
-										className="modal text-black
+										className="modal text-black min-h-screen
 									"
 									>
-										<div className="modal-box">
+										<div className="modal-box  h-full">
 											<h3 className="font-bold text-lg">Hello!</h3>
 
 											<form
-												className="card-body"
+												className="card-body h-full"
 												onSubmit={handleSubmit(onSubmit)}
 											>
 												<div className="form-control">

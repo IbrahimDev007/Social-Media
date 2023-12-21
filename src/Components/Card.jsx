@@ -10,7 +10,7 @@ import { FaCommentAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { VscThreeBars } from "react-icons/vsc";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Modal from "../Pages/Home/Component/Modal";
 const Card = ({
 	title,
@@ -22,6 +22,7 @@ const Card = ({
 	image,
 	photo,
 	userId,
+	aosData,
 }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
@@ -86,7 +87,10 @@ const Card = ({
 
 	return (
 		<div>
-			<div className="card card-compact w-96 bg-base-100 shadow-xl">
+			<div
+				data-aos={aosData}
+				className="card card-compact w-96 bg-base-100 shadow-xl"
+			>
 				<div className="relative">
 					<figure>
 						<LazyLoadImage src={image} alt="image" effect="blur" />
@@ -124,14 +128,13 @@ const Card = ({
 										transition={{ type: "spring", bounce: 0, duration: 0.4 }}
 									>
 										<button
-											className="  btn-sm  btn-success  btn-outline "
+											className=" flex justify-between btn-sm btn-success rounded-md btn-outline items-center"
 											onClick={() => setModal((modal) => !modal)}
 										>
-											<FaEdit className="text-lg" />
+											<FaEdit className="text-sm" />
 											Edit
 										</button>
 									</motion.div>
-									<Modal {...{ modal, setModal, id }} />
 								</li>
 							</ul>
 						</details>
@@ -211,6 +214,7 @@ const Card = ({
 					</div>
 				</div>
 			</div>
+			<Modal {...{ modal, setModal, id }} />
 		</div>
 	);
 };
