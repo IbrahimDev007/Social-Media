@@ -10,6 +10,8 @@ import { FaCommentAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { VscThreeBars } from "react-icons/vsc";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { AnimatePresence, motion } from "framer-motion";
+import Modal from "../Pages/Home/Component/Modal";
 const Card = ({
 	title,
 	desc,
@@ -37,7 +39,7 @@ const Card = ({
 			refetch();
 		});
 	};
-
+	const [modal, setModal] = useState(false);
 	useEffect(() => {
 		const LikeValid = like.includes(_id);
 		if (LikeValid) {
@@ -114,10 +116,22 @@ const Card = ({
 									</button>
 								</li>
 								<li>
-									<button className="  btn-sm  btn-success  btn-outline ">
-										<FaEdit className="text-lg" />
-										Edit
-									</button>
+									<motion.div
+										animate={{
+											scale: 1,
+											opacity: 1,
+										}}
+										transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+									>
+										<button
+											className="  btn-sm  btn-success  btn-outline "
+											onClick={() => setModal((modal) => !modal)}
+										>
+											<FaEdit className="text-lg" />
+											Edit
+										</button>
+									</motion.div>
+									<Modal {...{ modal, setModal, id }} />
 								</li>
 							</ul>
 						</details>
