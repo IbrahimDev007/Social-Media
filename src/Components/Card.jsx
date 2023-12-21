@@ -57,6 +57,30 @@ const Card = ({
 			})
 			.then((res) => console.log(res.data));
 	};
+	const deletePost = () => {
+		axios
+			.delete(`http://localhost:3000/status/${id}`, {})
+			.then((res) => {
+				console.log(res.data);
+				refetch();
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
+
+	// eslint-disable-next-line no-unused-vars
+	const editPost = (data) => {
+		axios
+			.patch(`http://localhost:3000/status/${id}`, { data })
+			.then((res) => {
+				console.log(res.data);
+				refetch();
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 
 	return (
 		<div>
@@ -81,7 +105,10 @@ const Card = ({
 							</summary>
 							<ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
 								<li>
-									<button className=" btn-sm  btn-error  btn-outline">
+									<button
+										className=" btn-sm  btn-error  btn-outline"
+										onClick={deletePost}
+									>
 										<FaTrash className="text-sm " />
 										Delete
 									</button>
