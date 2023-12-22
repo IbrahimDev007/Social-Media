@@ -41,6 +41,7 @@ const MyPost = () => {
 						comment={status?.Comment}
 						refetch={refetch}
 						aosData={"zoom-out-right"}
+						hoverEffect={false}
 					/>
 				))}
 		</div>

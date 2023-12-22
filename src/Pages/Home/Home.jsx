@@ -81,6 +81,7 @@ const Home = () => {
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
 								aosData={"flip-left"}
+								hoverEffect={true}
 							/>
 						);
 					})}
@@ -103,6 +104,7 @@ const Home = () => {
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
 								aosData={"zoom-in-right"}
+								hoverEffect={true}
 							/>
 						);
 					})}
@@ -124,6 +126,7 @@ const Home = () => {
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
 								aosData={"fade-in-left"}
+								hoverEffect={true}
 							/>
 						);
 					})}

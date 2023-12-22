@@ -1,4 +1,4 @@
-.alert {
+.alert-body {
 	background: linear-gradient(to right, #ff007a 50%, transparent 50%);
 	background-size: 200% 100%;
 	background-position: right bottom;
@@ -10,6 +10,6 @@
 	margin-bottom: 15px;
 }
 
-.alert:hover {
+.alert-body:hover {
 	background-position: left bottom;
 }

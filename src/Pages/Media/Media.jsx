@@ -41,6 +41,7 @@ const Media = () => {
 								photo={status?.photoUrl}
 								userId={status?.user_Id}
 								aosData={"zoom-out-left"}
+								hoverEffect={false}
 							/>
 						);
 					})}

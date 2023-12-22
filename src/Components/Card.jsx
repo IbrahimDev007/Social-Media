@@ -12,6 +12,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { motion } from "framer-motion";
 import Modal from "../Pages/Home/Component/Modal";
+import "./Title";
 const Card = ({
 	title,
 	desc,
@@ -24,6 +25,7 @@ const Card = ({
 	userId,
 	aosData,
 	durattion,
+	hoverEffect,
 }) => {
 	const [userData] = useUserHook();
 	const { _id } = userData;
@@ -125,7 +127,9 @@ const Card = ({
 						</details>
 					)}
 				</div>
-				<div className="card-body">
+				<div
+					className={`${hoverEffect ? "alert-body card-body" : "card-body"}`}
+				>
 					<h2 className="card-title">{title}</h2>
 					<p>{desc}</p>
 					<div className="card-actions justify-between ">
